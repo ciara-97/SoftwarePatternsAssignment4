@@ -72,7 +72,12 @@
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control col-md-2" name="paymentMethod"
-				placeholder="Payment Method" value="${customer.paymentMethod}" />
+				placeholder="Payment Method" value="${customer.paymentMethod}" list="payments"/>
+				<datalist id="payments">
+					<option value="Visa Card">
+					<option value="MasterCard">
+					<option value="American Express">
+ 				</datalist>
 		</div>
 		<div class="form-group">
 			<input type="submit" class="btn btn-secondary" value="Register" />

@@ -21,7 +21,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">My Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="addProduct">Add Products</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 			</ul>
@@ -33,12 +33,12 @@
 	
 	<div class="container text-center">
 		<br>
-		<h3>Welcome ${sessionScope.customer.firstName }</h3>
+		<h3>${sessionScope.admin } Page</h3>
 		<hr>
 	</div>
 	
 	<div class="container text-center">
-		<h2>Full list of Products</h2>
+		<h2>Items in Stock</h2>
 	</div>
 	
 	<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
@@ -57,7 +57,7 @@
 					Manufacturer: <c:out value="${stockItem.manufacturer}" /><br>
 					Category: <c:out value="${stockItem.category}" /><br>
 					Price: <c:out value="${stockItem.price}" /><br> 
-					<br><br>
+					Quantity: <c:out value="${stockItem.quantity}" /><br>
 				</td>
 				<td width="100">&nbsp</td>
 				<c:if test="${status.first and status.index % 4 == 4 or status.last}">
