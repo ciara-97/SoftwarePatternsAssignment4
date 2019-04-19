@@ -22,8 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="searchProducts">Search Products</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">My Cart</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="myCart">My Cart</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
@@ -58,7 +57,14 @@
 					Manufacturer: <c:out value="${stockItem.manufacturer}" /><br>
 					Category: <c:out value="${stockItem.category}" /><br>
 					Price: €<c:out value="${stockItem.price}" /><br> 
+					<form class="form-horizontal" method="post" action="addToCart">
+						<div class="form-group">
+							<input type="hidden" name="itemId" value="${stockItem.item_id}" />  
+							<input type="submit" class="btn btn-primary btn-sm" value="Add To Cart" />
+						</div>
+					</form> 
 					<br><br>
+					
 				</td>
 				<td width="100">&nbsp</td>
 				<c:if test="${status.first and status.index % 4 == 4 or status.last}">
