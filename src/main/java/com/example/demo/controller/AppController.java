@@ -168,6 +168,8 @@ public class AppController {
 		System.out.println(newItem.toString());
 
 		cart.add(newItem);
+		
+		newItem.setQuantity(newItem.getQuantity() -1);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("list", cart);
@@ -206,15 +208,15 @@ public class AppController {
 		result = validator.validate();
 
 		if (!result) {
-
 			request.setAttribute("error", "Invalid Card Details");
 			return "purchasePage";
+			
 		} else {
 			double totalPrice = Double.parseDouble(request.getParameter("tp"));
 			ItemOrders newOrder = new ItemOrders(totalPrice);
 			orderService.addOrder(newOrder);
-
 			ItemOrders newOrder1 = orderService.getOrderById(newOrder.getOrderId());
+			
 			for (StockItem s : cart) {
 				newOrder1.getProducts().add(s);
 			}
