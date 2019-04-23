@@ -24,16 +24,6 @@ public class StockItemService {
 		return stockItemRepository.findOne(id);
 	}
 	
-	/*public Customer getUserByUsernameAndPassword(String username, String password) {
-		Customer c = customerRepository.findByUsernameAndPassword(username, password);
-		return c;
-	}*/
-	
-	/*public Customer getUserByUsername(String username) {
-		Customer c = customerRepository.findUserByUsername(username);
-		return c;
-	}*/
-	
 	public void addItem(StockItem item) {
 		stockItemRepository.save(item);
 	}
