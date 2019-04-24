@@ -1,4 +1,4 @@
-package com.example.demo.allCustomersIterator;
+package com.example.demo.allCustomersDetailsIterator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.user.Customer;
 
 
+
 public class CustomerList implements Container {
-		
+	
 	public ArrayList<Customer> customers;
 	
 	 public CustomerList(ArrayList<Customer> customersList) {
