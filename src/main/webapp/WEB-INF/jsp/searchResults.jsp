@@ -21,8 +21,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="searchProducts">Search Products</a></li>
-				<li class="nav-item"><a class="nav-link" href="myCart">My Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="searchProducts">Search
+						Products</a></li>
+				<li class="nav-item"><a class="nav-link" href="myCart">My
+						Cart</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
@@ -34,37 +36,35 @@
 		<h2>Search Results</h2>
 		<hr>
 		<h2>Sort Results</h2>
-		<form class="form-horizontal" method="post" action="sortResults">
+
+
+		<form class="form-horizontal" method="post" action="sortResults"
+			style="text-align: left;">
 			<div class="form-group">
-			<input type="text" class="form-control col-md-2" name="sortBy" autocomplete="off"
-				placeholder="Sort By" list="sb"/>
+				<input type="text" class="form-control col-md-2" name="sortBy"
+					autocomplete="off" placeholder="Sort By" list="sb" />
 				<datalist id="sb">
 					<option value="Title">
 					<option value="Manufacturer">
 					<option value="Price">
 					<option value="Category">
- 				</datalist>
- 			<input type="text" class="form-control col-md-2" name="orderList" autocomplete="off"
-				placeholder="Order" list="order"/>
+				</datalist>
+				<input type="text" class="form-control col-md-2" name="orderList"
+					autocomplete="off" placeholder="Order" list="order" />
 				<datalist id="order">
 					<option value="Ascending Order">
 					<option value="Descending Order">
- 				</datalist>
-		</div>
-		<div class="form-group">
-			<input type="submit" class="btn btn-secondary" value="Sort" />
-		</div>
+				</datalist>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-secondary" value="Sort" />
+			</div>
 		</form>
 	</div>
 
-	<%-- <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/storeDb" user="root" password="root" />
-	<sql:query dataSource="${con }"
-		sql="select * from stock_item where ${sessionScope.searchBy } like '%${sessionScope.query }%'"
-		var="stock" /> --%>
-
 	<table>
-		<c:forEach var="stockItem" items="${sessionScope.searchResult}" varStatus="status">
+		<c:forEach var="stockItem" items="${sessionScope.searchResult}"
+			varStatus="status">
 			<c:if test="${not status.first and status.index % 4 == 0}">
 				<tr>
 			</c:if>
@@ -74,8 +74,7 @@
 					value="${stockItem.title}" /><br> Manufacturer: <c:out
 					value="${stockItem.manufacturer}" /><br> Category: <c:out
 					value="${stockItem.category}" /><br> Price: €<c:out
-					value="${stockItem.price}" /><br> <br>
-			<br></td>
+					value="${stockItem.price}" /><br> <br> <br></td>
 			<td width="100">&nbsp</td>
 			<c:if test="${status.first and status.index % 4 == 4 or status.last}">
 				</tr>

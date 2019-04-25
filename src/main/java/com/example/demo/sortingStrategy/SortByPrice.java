@@ -17,10 +17,6 @@ public class SortByPrice implements SortingStrategy {
 		        return Double.compare(c1.getPrice(), c2.getPrice());
 		    }
 		});
-		
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getPrice());
-		}
 
 		return products;
 	}
@@ -35,9 +31,6 @@ public class SortByPrice implements SortingStrategy {
 		});
 		Collections.reverse(products);
 		
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getPrice());
-		}
 		return products;
 	}
 

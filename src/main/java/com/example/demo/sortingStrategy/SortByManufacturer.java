@@ -11,10 +11,6 @@ public class SortByManufacturer implements SortingStrategy {
 	public ArrayList<StockItem> ascendingOrder(ArrayList<StockItem> products) {
 		Collections.sort(products, (o1, o2) -> o1.getManufacturer().compareTo(o2.getManufacturer()));
 
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getManufacturer());
-		}
-
 		return products;
 	}
 
@@ -23,9 +19,6 @@ public class SortByManufacturer implements SortingStrategy {
 		Collections.sort(products, (o1, o2) -> o1.getManufacturer().compareTo(o2.getManufacturer()));
 		Collections.reverse(products);
 		
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getManufacturer());
-		}
 		return products;
 	}
 

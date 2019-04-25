@@ -11,10 +11,6 @@ public class SortByCategory implements SortingStrategy {
 	public ArrayList<StockItem> ascendingOrder(ArrayList<StockItem> products) {
 		Collections.sort(products, (o1, o2) -> o1.getCategory().compareTo(o2.getCategory()));
 
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getCategory());
-		}
-
 		return products;
 	}
 
@@ -22,10 +18,7 @@ public class SortByCategory implements SortingStrategy {
 	public ArrayList<StockItem> descendingOrder(ArrayList<StockItem> products) {
 		Collections.sort(products, (o1, o2) -> o1.getCategory().compareTo(o2.getCategory()));
 		Collections.reverse(products);
-		
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getCategory());
-		}
+	
 		return products;
 	}
 

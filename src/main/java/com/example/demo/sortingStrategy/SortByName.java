@@ -11,10 +11,6 @@ public class SortByName implements SortingStrategy {
 	public ArrayList<StockItem> ascendingOrder(ArrayList<StockItem> products) {
 		Collections.sort(products, (o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
 
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getTitle());
-		}
-
 		return products;
 	}
 
@@ -23,9 +19,6 @@ public class SortByName implements SortingStrategy {
 		Collections.sort(products, (o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
 		Collections.reverse(products);
 		
-		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getTitle());
-		}
 		return products;
 	}
 

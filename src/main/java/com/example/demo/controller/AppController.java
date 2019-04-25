@@ -32,6 +32,8 @@ import com.example.demo.loyaltyCardsStrategyAndSingleton.NoCard;
 import com.example.demo.loyaltyCardsStrategyAndSingleton.PremiumCard;
 import com.example.demo.order.ItemOrders;
 import com.example.demo.order.ItemOrdersService;
+import com.example.demo.sortingStrategy.SortByCategory;
+import com.example.demo.sortingStrategy.SortByManufacturer;
 import com.example.demo.sortingStrategy.SortByName;
 import com.example.demo.sortingStrategy.SortByPrice;
 import com.example.demo.sortingStrategy.SortingContext;
@@ -113,7 +115,7 @@ public class AppController {
 			}
 		} 
 		else if(sortBy.equals("Manufacturer")) {
-			context.setSortingMethod(new SortByPrice());
+			context.setSortingMethod(new SortByManufacturer());
 			if(order.equals("Ascending Order")) {
 				context.sortAscending(searchStock);
 			}
@@ -122,7 +124,7 @@ public class AppController {
 			}
 		} 
 		else if(sortBy.equals("Category")) {
-			context.setSortingMethod(new SortByPrice());
+			context.setSortingMethod(new SortByCategory());
 			if(order.equals("Ascending Order")) {
 				context.sortAscending(searchStock);
 			}
@@ -305,15 +307,23 @@ public class AppController {
 			return "searchResults";
 
 		} else if (request.getParameter("manufacturer") != null) {
-			String type = "manufacturer";
-			session.setAttribute("searchBy", type);
-			session.setAttribute("query", searchQ);
+			for(StockItem s: items) {
+				if(s.getManufacturer().contains(searchQ)) {
+					searchStock.add(s);
+				}
+			}
+			
+			session.setAttribute("searchResult", searchStock);
 			return "searchResults";
 
 		} else if (request.getParameter("title") != null) {
-			String type = "title";
-			session.setAttribute("searchBy", type);
-			session.setAttribute("query", searchQ);
+			for(StockItem s: items) {
+				if(s.getTitle().contains(searchQ)) {
+					searchStock.add(s);
+				}
+			}
+			
+			session.setAttribute("searchResult", searchStock);
 			return "searchResults";
 
 		} else {
