@@ -33,47 +33,51 @@
 			</ul>
 		</div>
 	</nav>
-
+	
 	<div class="container text-center">
 		<br>
-		<h3>${sessionScope.admin }Page</h3>
+		<h2>Search Results</h2>
 		<hr>
-	</div>
+		<h2>Sort Results</h2>
 
-	<div class="container text-center">
-		<h2>Items in Stock</h2>
-		<hr>
-	</div>
 
-	<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/storeDb" user="root" password="root" />
-	<sql:query dataSource="${con }" sql="select * from stock_item"
-		var="stock" />
+		<form class="form-horizontal" method="post" action="aSortResults"
+			style="text-align: left;">
+			<div class="form-group">
+				<input type="text" class="form-control col-md-2" name="sortBy"
+					autocomplete="off" placeholder="Sort By" list="sb" />
+				<datalist id="sb">
+					<option value="Title">
+					<option value="Manufacturer">
+					<option value="Price">
+					<option value="Category">
+				</datalist>
+				<input type="text" class="form-control col-md-2" name="orderList"
+					autocomplete="off" placeholder="Order" list="order" />
+				<datalist id="order">
+					<option value="Ascending Order">
+					<option value="Descending Order">
+				</datalist>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-secondary" value="Sort" />
+			</div>
+		</form>
+	</div>
 
 	<table>
-		<c:forEach var="stockItem" items="${stock.rows}" varStatus="status">
+		<c:forEach var="stockItem" items="${sessionScope.searchResult}"
+			varStatus="status">
 			<c:if test="${not status.first and status.index % 4 == 0}">
 				<tr>
 			</c:if>
 			<td width="100">&nbsp</td>
-			<td width="200">
-				<img src="images/${stockItem.image}" height="200" width="180" /><br> 
-				<c:out value="${stockItem.title}" /><br> 
-				Manufacturer: <c:out value="${stockItem.manufacturer}" /><br> 
-				Category: <c:out value="${stockItem.category}" /><br> 
-				Price: €<c:out value="${stockItem.price}" /><br> 
-				Quantity: <c:out value="${stockItem.quantity }" /> <br> <br> 
-				<c:choose>
-					<c:when test="${!stockItem.state}">Out of Stock</c:when>
-					<c:when test="${stockItem.state}">In Stock</c:when>
-				</c:choose>
-				<form class="form-horizontal" method="post" action="purchaseStock">
-					<div class="form-group">
-						<input type="hidden" name="itemId" value="${stockItem.item_id}" />
-						<input type="submit" class="btn btn-primary btn-sm"
-							value="Add more to Stock" />
-					</div>
-				</form></td>
+			<td width="200"><img src="images/${stockItem.image}"
+				height="200" width="180" /><br> <c:out
+					value="${stockItem.title}" /><br> Manufacturer: <c:out
+					value="${stockItem.manufacturer}" /><br> Category: <c:out
+					value="${stockItem.category}" /><br> Price: €<c:out
+					value="${stockItem.price}" /><br> <br> <br></td>
 			<td width="100">&nbsp</td>
 			<c:if test="${status.first and status.index % 4 == 4 or status.last}">
 				</tr>
