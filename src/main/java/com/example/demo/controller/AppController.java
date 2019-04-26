@@ -104,6 +104,15 @@ public class AppController {
 		return "adminSuccess";
 	}
 	
+	@RequestMapping("/viewReviews")
+	public String viewReviews(HttpServletRequest request, HttpSession session) {
+		int id = Integer.parseInt(request.getParameter("itemId"));
+		StockItem item = stockService.getItemById(id);
+		System.out.println(item.toString());
+		session.setAttribute("reviewItem", item);
+		return "viewReview";
+	}
+	
 	@RequestMapping("purchaseStock")
 	public String purchaseStock(HttpServletRequest request, HttpSession session) {
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
@@ -236,22 +245,18 @@ public class AppController {
 		final ArrayList<ItemOrders> orders;
 		orders = (ArrayList<ItemOrders>) orderService.getAllOrders();		
 		
-		PurchaseHistory purcHist = new PurchaseHistory(orders); //List of all orders made being iterated
-		
+		PurchaseHistory purcHist = new PurchaseHistory(orders); 		//List of all orders made being iterated
 		ArrayList<ItemOrders> listOrders = new ArrayList<ItemOrders>(); //New list that orders for this user added to
 		
-		Set<ItemOrders> theOrder = c.getUserOrders(); //orders belonging to the current customer
-
-		
+		//orders belonging to the current customer
+		Set<ItemOrders> theOrder = c.getUserOrders(); 
 		for (Iterator iter = purcHist.getIterator(); iter.hasNext();) {
 			ItemOrders order = (ItemOrders) iter.next();
-
 			for(ItemOrders o: theOrder) {
 				if (order.getOrderId() == o.getOrderId()) {
 					listOrders.add(o);
 				}
 			}
-
 		}
 		session.setAttribute("purchHist", listOrders);
 		return "purchaseHistory";
@@ -261,8 +266,8 @@ public class AppController {
 	public String customerDetails(HttpSession session) {
 		final ArrayList<Customer> customers;
 		customers = (ArrayList<Customer>) custService.getAllCustomers();
-		CustomerList listCust = new CustomerList(customers);
 		
+		CustomerList listCust = new CustomerList(customers);
 		ArrayList<Customer> listAll = new ArrayList<Customer>();
 		for (Iterator iter = listCust.getIterator(); iter.hasNext();) {
 			Customer name = (Customer) iter.next();
