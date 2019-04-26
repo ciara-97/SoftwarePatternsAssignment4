@@ -104,6 +104,15 @@ public class AppController {
 		return "adminSuccess";
 	}
 	
+	@RequestMapping("/viewReviews")
+	public String viewReviews(HttpServletRequest request, HttpSession session) {
+		int id = Integer.parseInt(request.getParameter("itemId"));
+		StockItem item = stockService.getItemById(id);
+		System.out.println(item.toString());
+		session.setAttribute("reviewItem", item);
+		return "viewReview";
+	}
+	
 	@RequestMapping("purchaseStock")
 	public String purchaseStock(HttpServletRequest request, HttpSession session) {
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
